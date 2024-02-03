@@ -1,0 +1,5 @@
+﻿query getDossierIdByNumber($dossierNumber: Int!) {
+  dossier(number: $dossierNumber) {
+    id
+  }
+}

@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>ANS.DémarchesSimplifiées.Activities.Design</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\AnnoterDossier.png" />
+    <None Remove="Resources\ChangerStatut.png" />
+    <None Remove="Resources\ChargerDossier.png" />
+    <None Remove="Resources\RécupérerDossiers.png" />
+    <None Remove="Resources\TransférerDossier.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Activities.Core.Presentation" Version="6.0.0-20220831.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ANS.DémarchesSimplifiées.Activities\ANS.DémarchesSimplifiées.Activities.vbproj" />
+    <ProjectReference Include="..\ANS.DémarchesSimplifiées\ANS.DémarchesSimplifiées.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\AnnoterDossier.png" />
+    <Resource Include="Resources\ChangerStatut.png" />
+    <Resource Include="Resources\ChargerDossier.png" />
+    <Resource Include="Resources\RécupérerDossiers.png" />
+    <Resource Include="Resources\TransférerDossier.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="My Project\Resources.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="My Project\Settings.Designer.vb">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="My Project\Settings.settings">
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>ANS.DémarchesSimplifiées.Activities</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Activities.Core.Presentation" Version="6.0.0-20220831.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ANS.DémarchesSimplifiées\ANS.DémarchesSimplifiées.vbproj" />
+  </ItemGroup>
+
+</Project>

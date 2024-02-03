@@ -1,0 +1,11 @@
+﻿mutation dossierModifierAnnotationText($input: DossierModifierAnnotationTextInput!) {
+	dossierModifierAnnotationText(input: $input) {
+		annotation {
+			id
+			stringValue
+		}
+		errors {
+			message
+		}
+	}
+}

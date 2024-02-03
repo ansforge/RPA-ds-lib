@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate x:Key="Collapsed">
+        <TextBlock Foreground="Gray" TextAlignment="Center"><Italic>Double-click to view</Italic></TextBlock>
+    </DataTemplate>
+    <Style x:Key="ExpandOrCollapsedStyle" TargetType="{x:Type ContentPresenter}">
+        <Setter Property="ContentTemplate" Value="{DynamicResource Expanded}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=ShowExpanded}" Value="false">
+                <Setter Property="ContentTemplate" Value="{DynamicResource Collapsed}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

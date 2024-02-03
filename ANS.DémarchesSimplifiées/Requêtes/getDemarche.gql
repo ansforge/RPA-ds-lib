@@ -1,0 +1,20 @@
+﻿query getDemarche(
+	$demarcheNumber: Int!	
+) {
+	demarche(number: $demarcheNumber) {
+		activeRevision {
+			dateCreation
+			champDescriptors {
+				id
+				label
+				type
+			}
+			annotationDescriptors {
+				id
+				label
+				type
+			}
+		}
+		state
+	}
+}
