@@ -1,6 +1,6 @@
 # ANS.DémarchesSimplifiées
 
-Bibliothèque d'activités nécessaires au modèle de code UiPath **ANS.SecureFramework-DS**.
+Bibliothèque d'activités nécessaires au modèle de code UiPath **ANS.REFramework-DS**.
 
 L'architecture de la solution suit les standards pour la création d'une bibliothèque d'activités .NET.
 Cette solution est donc formée des projets suivants:
