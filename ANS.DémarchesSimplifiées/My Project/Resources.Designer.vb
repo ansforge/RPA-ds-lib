@@ -101,10 +101,13 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une chaîne localisée semblable à mutation dossierModifierAnnotationText($input: DossierModifierAnnotationTextInput!) {
         '''	dossierModifierAnnotationText(input: $input) {
-        '''		dossierId
-        '''		instructeurId
-        '''		annotationId
-        '''		value
+        '''		annotation {
+        '''			id
+        '''			stringValue
+        '''		}
+        '''		errors {
+        '''			message
+        '''		}
         '''	}
         '''}.
         '''</summary>
@@ -196,8 +199,14 @@ Namespace My.Resources
         ''') {
         '''	demarche(number: $demarcheNumber) {
         '''		activeRevision {
+        '''			id
         '''			dateCreation
         '''			champDescriptors {
+        '''				id
+        '''				label
+        '''				type
+        '''			}
+        '''			annotationDescriptors {
         '''				id
         '''				label
         '''				type

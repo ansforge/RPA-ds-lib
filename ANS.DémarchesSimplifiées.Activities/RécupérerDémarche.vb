@@ -2,7 +2,7 @@
 Imports System.ComponentModel
 Imports Newtonsoft.Json.Linq
 
-<DisplayName("Lister les champs d'une démarche")>
+<DisplayName("Récupérer la dernière révision d’une démarche")>
 Public Class RécupérerDémarche
     Inherits CodeActivity
 
@@ -14,15 +14,11 @@ Public Class RécupérerDémarche
     <Category("Input")>
     <DisplayName("Numéro de démarche")>
     <RequiredArgument()>
-    Public Property Démarche As InArgument(Of Integer)
-
+    Public Property NuméroDémarche As InArgument(Of Integer)
+   
     <Category("Output")>
-    <DisplayName("Liste des champs")>
-    Public Property Champs As OutArgument(Of JArray)
-    
-    <Category("Output")>
-    <DisplayName("Liste des annotations")>
-    Public Property Annotations As OutArgument(Of JArray)
+    <DisplayName("Identifiant de la révision")>
+    Public Property IdRévision As OutArgument(Of String)
 
     <Category("Output")>
     <DisplayName("Date de la révision")>
@@ -32,12 +28,21 @@ Public Class RécupérerDémarche
     <DisplayName("État de la révision")>
     Public Property ÉtatRévision As OutArgument(Of StatutDémarche)
 
+    <Category("Output")>
+    <DisplayName("Liste des champs")>
+    Public Property Champs As OutArgument(Of JArray)
+    
+    <Category("Output")>
+    <DisplayName("Liste des annotations")>
+    Public Property Annotations As OutArgument(Of JArray)
+ 
     Protected Overrides Sub Execute(context As CodeActivityContext)
-        Dim t = Core.RécupérerDémarche(Jeton.Get(context), Démarche.Get(context))
-        Champs.Set(context, t.Item1)
-        Annotations.Set(context, t.Item2)
-        DateRévision.Set(context, t.Item3)
-        ÉtatRévision.Set(context, t.Item4)
+        Dim t = Core.RécupérerDémarche(Jeton.Get(context), NuméroDémarche.Get(context))
+        IdRévision.Set(context, t.Item1)
+        DateRévision.Set(context, t.Item2)
+        ÉtatRévision.Set(context, t.Item3)
+        Champs.Set(context, t.Item4)
+        Annotations.Set(context, t.Item5)
     End Sub
 
 End Class

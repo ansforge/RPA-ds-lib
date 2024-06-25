@@ -3,7 +3,6 @@
   <PropertyGroup>
     <RootNamespace>ANS.DémarchesSimplifiées.Activities.Design</RootNamespace>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <RootNamespace>ANS.DémarchesSimplifiées.Activities.Design</RootNamespace>
     <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>ANS.DémarchesSimplifiées.Activities</PackageId>

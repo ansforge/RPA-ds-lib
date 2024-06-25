@@ -3,6 +3,7 @@
 ) {
 	demarche(number: $demarcheNumber) {
 		activeRevision {
+			id
 			dateCreation
 			champDescriptors {
 				id
