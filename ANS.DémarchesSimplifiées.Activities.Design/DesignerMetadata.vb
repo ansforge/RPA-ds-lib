@@ -8,7 +8,6 @@ Imports System.Reflection
 Imports System.Windows.Data
 Imports System.Globalization
 
-
 Public Class ActivityDecoratorControl
     Inherits ContentControl
 
@@ -54,8 +53,8 @@ Public Class DesignerMetadata
         builder.AddCustomAttributes(GetType(TransférerDossier), New CategoryAttribute(Catégorie))
         builder.AddCustomAttributes(GetType(TransférerDossier), New DesignerAttribute(GetType(TransférerDossierDesigner)))
 
-        builder.AddCustomAttributes(GetType(ChargerDossier), New CategoryAttribute(Catégorie))
-        builder.AddCustomAttributes(GetType(ChargerDossier), New DesignerAttribute(GetType(ChargerDossierDesigner)))
+        'builder.AddCustomAttributes(GetType(ChargerPiècesJointes), New CategoryAttribute(Catégorie))
+        'builder.AddCustomAttributes(GetType(ChargerPiècesJointes), New DesignerAttribute(GetType(ChargerDossierDesigner)))
 
         builder.AddCustomAttributes(GetType(RécupérerDossiers), New CategoryAttribute(Catégorie))
         builder.AddCustomAttributes(GetType(RécupérerDossiers), New DesignerAttribute(GetType(RécupérerDossiersDesigner)))
@@ -64,6 +63,8 @@ Public Class DesignerMetadata
 
         builder.AddCustomAttributes(GetType(AnnoterDossier), New CategoryAttribute(Catégorie))
         builder.AddCustomAttributes(GetType(AnnoterDossier), New DesignerAttribute(GetType(AnnoterDossierDesigner)))
+        
+        builder.AddCustomAttributes(GetType(SFLogMessage), New CategoryAttribute(Catégorie))
 
         MetadataStore.AddAttributeTable(builder.CreateTable())
 
