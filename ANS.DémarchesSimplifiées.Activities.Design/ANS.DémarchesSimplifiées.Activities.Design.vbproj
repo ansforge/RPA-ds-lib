@@ -3,9 +3,26 @@
   <PropertyGroup>
     <RootNamespace>ANS.DémarchesSimplifiées.Activities.Design</RootNamespace>
     <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>ANS.DémarchesSimplifiées.Activities.Design</RootNamespace>
     <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>ANS.DémarchesSimplifiées.Activities</PackageId>
+    <Title>Démarches Simplifiées RPA</Title>
+    <Version>0.9.1</Version>
+    <Authors>Florent Mercier</Authors>
+    <Company>Agence du Numérique en Santé</Company>
+    <Description>Bibliothèque d’activités UiPath pour interagir avec l’API GraphQL Démarches Simplifiées.</Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIcon>ds.png</PackageIcon>
+    <RepositoryUrl>https://github.com/ansforge/RPA-DS-lib</RepositoryUrl>
+    <PackageTags>ANS;Démarches;Simplifiées;demarches;simplifiees;ds</PackageTags>
+    <PackageOutputPath>..\NuGet</PackageOutputPath>
   </PropertyGroup>
 
+  <!-- Package Versions -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' AND '$(DesignTimeBuild)' != 'true'">
+    <PackageVersion>$(Version).$([System.DateTime]::UtcNow.ToString(MddHHmmss))</PackageVersion>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\AnnoterDossier.png" />
     <None Remove="Resources\ChangerStatut.png" />
@@ -13,14 +30,30 @@
     <None Remove="Resources\RécupérerDossiers.png" />
     <None Remove="Resources\TransférerDossier.png" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="System.Activities.Core.Presentation" Version="6.0.0-20220831.1" />
+    <None Include="..\NuGet\ds.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ANS.DémarchesSimplifiées.Activities\ANS.DémarchesSimplifiées.Activities.vbproj" />
-    <ProjectReference Include="..\ANS.DémarchesSimplifiées\ANS.DémarchesSimplifiées.vbproj" />
+    <PackageReference Include="System.Activities.Core.Presentation" Version="6.0.0-20231204.1" PrivateAssets="All" />
+    <PackageReference Include="UiPath.Workflow" Version="6.0.0-20231211-03" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ANS.DémarchesSimplifiées.Activities\ANS.DémarchesSimplifiées.Activities.vbproj" PrivateAssets="All" />
+    <ProjectReference Include="..\ANS.DémarchesSimplifiées\ANS.DémarchesSimplifiées.vbproj" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UiPath.Activities.Contracts" PrivateAssets="All">
+      <HintPath Condition="Exists('$(ProgramFiles)\UiPath\Studio\net461')">$(ProgramFiles)\UiPath\Studio\net461\UiPath.Activities.Contracts.dll</HintPath>
+      <HintPath Condition="Exists('$(ProgramFiles(x86))\UiPath\Studio\net461')">$(ProgramFiles(x86))\UiPath\Studio\net461\UiPath.Activities.Contracts.dll</HintPath>
+      <HintPath Condition="Exists('$(localappdata)\Programs\UiPath\Studio\net461')">$(localappdata)\Programs\UiPath\Studio\net461\UiPath.Activities.Contracts.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,17 +63,12 @@
     <Resource Include="Resources\RécupérerDossiers.png" />
     <Resource Include="Resources\TransférerDossier.png" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <Compile Update="My Project\Resources.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="My Project\Settings.Designer.vb">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -51,13 +79,25 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+	
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="del $(PackageOutputPath)\$(PackageId).*.nupkg" />
+  </Target>
+  <Target Name="PostBuild" AfterTargets="Pack">
+    <Exec Command="NuGet add -source $(UserProfile)\.nuget\packages -expand $(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" />
+  </Target>
 
-  <ItemGroup>
-    <None Update="My Project\Settings.settings">
-      <CustomToolNamespace>My</CustomToolNamespace>
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
-  </ItemGroup>
-
+  <!--https://github.com/NuGet/Home/issues/3891#issuecomment-569491001-->
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
+    </ItemGroup>
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)" />
+    </ItemGroup>
+  </Target>
+  
 </Project>

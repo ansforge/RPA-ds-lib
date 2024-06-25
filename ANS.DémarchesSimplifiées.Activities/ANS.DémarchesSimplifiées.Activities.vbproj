@@ -1,13 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <RootNamespace>ANS.DémarchesSimplifiées.Activities</RootNamespace>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <PackageId>$(AssemblyName).Implementation</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Activities.Core.Presentation" Version="6.0.0-20220831.1" />
+    <PackageReference Include="System.Activities.Metadata" Version="6.0.0-20231204.1" />
+    <PackageReference Include="UiPath.System.Activities" Version="23.10.6" />
+    <PackageReference Include="UiPath.Workflow.Runtime" Version="6.0.0-20231211-03" />
   </ItemGroup>
 
   <ItemGroup>
