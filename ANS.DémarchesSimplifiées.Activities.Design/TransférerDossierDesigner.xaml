@@ -4,7 +4,8 @@
     xmlns:s="clr-namespace:System;assembly=mscorlib"
     xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
     xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
-    xmlns:sapv="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation">
+    xmlns:sapv="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+    xmlns:ans="clr-namespace:ANS.DémarchesSimplifiées;assembly=ANS.DémarchesSimplifiées">
     <sap:ActivityDesigner.Icon>
         <DrawingBrush>
             <DrawingBrush.Drawing>
@@ -24,15 +25,15 @@
     </sap:ActivityDesigner.Resources>
 
     <Grid Width="250">
-        <Label Content="Numéro de dossier" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+        <Label Content="Dossier" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
         <sapv:ExpressionTextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,24,0,0"
-                 OwnerActivity="{Binding Path=ModelItem}"
-                 Expression="{Binding Path=ModelItem.NuméroDossier, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}}"
-                 ExpressionType="s:Int32"/>
+                 OwnerActivity="{Binding ModelItem}"
+                 Expression="{Binding ModelItem.Dossier, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}}"
+                 ExpressionType="ans:Dossier"/>
         <Label Content="Instructeur" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,48,0,0" />
         <sapv:ExpressionTextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,72,0,0"
-                 OwnerActivity="{Binding Path=ModelItem}"
-                 Expression="{Binding Path=ModelItem.Instructeur, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}}"
+                 OwnerActivity="{Binding ModelItem}"
+                 Expression="{Binding ModelItem.Instructeur, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}}"
                  ExpressionType="s:String"/>
     </Grid>
 </sap:ActivityDesigner>

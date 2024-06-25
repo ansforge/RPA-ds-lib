@@ -35,7 +35,7 @@
         <Label Content="Numéro de démarche" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
         <sapv:ExpressionTextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,24,0,0"
                  OwnerActivity="{Binding Path=ModelItem}"
-                 Expression="{Binding Path=ModelItem.Démarche, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}}"
+                 Expression="{Binding Path=ModelItem.NuméroDémarche, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}}"
                  ExpressionType="s:Int32"/>
         <Label Content="Limite de dossiers" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,48,0,0"/>
         <sapv:ExpressionTextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,72,0,0"

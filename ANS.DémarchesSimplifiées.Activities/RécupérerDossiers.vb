@@ -1,7 +1,7 @@
 ﻿Imports System.Activities
 Imports System.ComponentModel
 
-<DisplayName("Récupérer des dossiers")>
+<DisplayName("Récupérer plusieurs dossiers")>
 Public Class RécupérerDossiers
     Inherits CodeActivity
 
@@ -13,7 +13,7 @@ Public Class RécupérerDossiers
     <Category("Input")>
     <DisplayName("Numéro de démarche")>
     <RequiredArgument()>
-    Public Property Démarche As InArgument(Of Integer)
+    Public Property NuméroDémarche As InArgument(Of Integer)
 
     <Category("Input")>
     <DisplayName("Nombre maximum de dossiers")>
@@ -30,17 +30,17 @@ Public Class RécupérerDossiers
     <RequiredArgument()>
     Public Property Statut As StatutDossier = StatutDossier.en_construction
     
+    <Category("Input")>
+    <DisplayName("À partir d’une date")>
+    Public Property After As InArgument(Of DateTime) = Nothing
+
     <Category("Output")>
     <DisplayName("Dossiers récupérés")>
     <RequiredArgument()>
-    Public Property Dossier As OutArgument(Of IEnumerable(Of Dossier))
-
-    <Category("Input")>
-    <DisplayName("Après le")>
-    Public Property After As InArgument(Of DateTime) = Nothing
+    Public Property Dossiers As OutArgument(Of IEnumerable(Of Dossier))
 
     Protected Overrides Sub Execute(context As CodeActivityContext)
-        Dossier.Set(context, Core.RécupérerDossiers(Jeton.Get(context), Démarche.Get(context), Limite.Get(context), Ordre, Statut, After.Get(context)))
+        Dossiers.Set(context, Core.RécupérerDossiers(Jeton.Get(context), NuméroDémarche.Get(context), Limite.Get(context), Ordre, Statut, After.Get(context)))
     End Sub
 
 End Class

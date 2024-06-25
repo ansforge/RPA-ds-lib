@@ -1,6 +1,4 @@
-﻿
-
-Public Class TransférerDossierDesigner
+﻿Public Class TransférerDossierDesigner
     
 End Class
 

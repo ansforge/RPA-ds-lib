@@ -12,21 +12,20 @@ Public Class TransférerDossier
     Public Property Jeton As InArgument(Of String)
     
     <Category("Input")>
+    <DisplayName("Dossier")>
+    <RequiredArgument()>
+    Public Property Dossier As InArgument(Of Dossier)
+
+    <Category("Input")>
     <DisplayName("Instructeur")>
     <RequiredArgument()>
     Public Property Instructeur As InArgument(Of String)
 
-    <Category("Input")>
-    <DisplayName("Numéro de dossier")>
-    <RequiredArgument()>
-    Public Property NuméroDossier As InArgument(Of Integer)
-
-
+    
     Protected Overrides Sub Execute(context As CodeActivityContext)
-        Core.TransférerDossier(
+        Dossier.Get(context).Transférer(
             Jeton.Get(context),
-            Instructeur.Get(context),
-            NuméroDossier.Get(context)
+           Instructeur.Get(context)
         )
     End Sub
 

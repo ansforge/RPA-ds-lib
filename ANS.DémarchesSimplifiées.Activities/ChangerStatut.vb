@@ -1,6 +1,5 @@
 ﻿Imports System.Activities
 Imports System.ComponentModel
-Imports Newtonsoft.Json.Linq
 
 <DisplayName("Changer le statut d’un dossier")>
 Public Class ChangerStatut
@@ -12,14 +11,14 @@ Public Class ChangerStatut
     Public Property Jeton As InArgument(Of String)
     
     <Category("Input")>
-    <DisplayName("Instructeur")>
+    <DisplayName("Dossier")>
     <RequiredArgument()>
-    Public Property Instructeur As InArgument(Of String)
+    Public Property Dossier As InArgument(Of Dossier)
 
     <Category("Input")>
-    <DisplayName("Numéro de dossier")>
+    <DisplayName("Identifiant de l’instructeur")>
     <RequiredArgument()>
-    Public Property NuméroDossier As InArgument(Of Integer)
+    Public Property InstructeurId As InArgument(Of String)
 
     <Category("Input")>
     <DisplayName("Statut")>
@@ -34,20 +33,13 @@ Public Class ChangerStatut
     <DisplayName("Notifier le demandeur")>
     Public Property Notifier As Boolean = True
     
-    <Category("Output")>
-    <DisplayName("Résultat")>
-    Public Property Résultat As OutArgument(Of JObject)
-
     Protected Overrides Sub Execute(context As CodeActivityContext)
-        Résultat.Set(context,
-            Core.ChangerStatut(
-                Jeton.Get(context),
-                Instructeur.Get(context),
-                NuméroDossier.Get(context),
-                Statut.Get(context),
-                Motivation.Get(context),
-                Notifier
-            )
+        Dossier.Get(context).ChangerStatut(
+            Jeton.Get(context),
+            InstructeurId.Get(context),
+            Statut.Get(context),
+            Motivation.Get(context),
+            Notifier
         )
     End Sub
 

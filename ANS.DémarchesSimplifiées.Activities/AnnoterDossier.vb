@@ -1,6 +1,7 @@
 ﻿Imports System.Activities
 Imports System.ComponentModel
 
+
 <DisplayName("Annoter un dossier")>
 Public Class AnnoterDossier
     Inherits CodeActivity
@@ -11,14 +12,14 @@ Public Class AnnoterDossier
     Public Property Jeton As InArgument(Of String)
     
     <Category("Input")>
-    <DisplayName("Numéro de dossier")>
+    <DisplayName("Dossier")>
     <RequiredArgument()>
-    Public Property NuméroDossier As InArgument(Of Integer)
+    Public Property Dossier As InArgument(Of Dossier)
     
     <Category("Input")>
-    <DisplayName("Instructeur")>
+    <DisplayName("Identifiant de l’instructeur")>
     <RequiredArgument()>
-    Public Property Instructeur As InArgument(Of String)
+    Public Property InstructeurId As InArgument(Of String)
     
     <Category("Input")>
     <DisplayName("Label du champ à annoter")>
@@ -35,7 +36,7 @@ Public Class AnnoterDossier
         'If IdentifiantDossier IsNot Nothing Then
         '    Throw New Exception("La recherche de dossier par ID n'est pas encore implémentée.")
         'End If
-        Core.AnnoterDossier(Jeton.Get(context), NuméroDossier.Get(context), Instructeur.Get(context), ChampAnnotation.Get(context), Texte.Get(context))
+        Dossier.Get(context).Annoter(Jeton.Get(context), InstructeurId.Get(context), ChampAnnotation.Get(context), Texte.Get(context))
     End Sub
 
 End Class
